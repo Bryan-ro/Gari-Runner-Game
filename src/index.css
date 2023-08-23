@@ -1,0 +1,214 @@
+@import url('https://fonts.googleapis.com/css2?family=Black+Ops+One&family=Roboto&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.game-content {
+    height: 100vh;
+    width: 10 0%;
+    margin: auto;
+    position: relative;
+    overflow: hidden;
+}
+
+.all-backgrounds {
+    position: absolute;
+    left: 0;
+    width: 100%;
+    height: 100%;
+} 
+
+.all-backgrounds.play {
+    animation: enterSecond 5s linear infinite;
+}
+
+
+
+.first {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    left: 0;
+}
+
+.second {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    left: 100%;
+}
+
+
+@keyframes enterSecond {
+    to {
+        left: -100%;
+    }
+}
+
+.sky {
+    z-index: 0;
+    position: absolute;
+    width: 100%;
+}
+
+.cloud2 {
+    z-index: 1;
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+}
+
+.ground {
+    z-index: 1;
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+}
+
+.ground-principal {
+    z-index: 1;
+    position: absolute;
+    background-color: green;
+    bottom: 0;
+    width: 100%;
+    height: 70px;
+}
+
+#trash-collision.one {
+    z-index: 2;
+    position: absolute;
+    bottom: 0;
+    right: 10px;
+    width: 150px;
+    height: 120px;
+}
+
+#trash-collision.two {
+    z-index: 2;
+    position: absolute;
+    bottom: 0;
+    right: 10px;
+    width: 150px;
+    height: 135px;
+}
+
+#trash-collision.three {
+    z-index: 2;
+    position: absolute;
+    bottom: 0;
+    right: 10px;
+    width: 135px;
+    height: 170px;
+}
+
+.trash {
+    z-index: 2;
+    position: absolute;
+    right: -50px;
+    bottom: 0;
+    width: 250px;
+
+}
+
+#trash-collision.play {
+    animation: obstaculeMovement 2s linear infinite;
+}
+
+@keyframes obstaculeMovement {
+    from {
+        right: -400px;
+    }
+
+    30% {
+        right: -400;
+    }
+
+    to {
+        right: 100%;
+    }
+}
+
+
+#runner-collision {
+    z-index: 2;
+    position: absolute;
+    width: 25px;
+    height: 260px;
+    left: 140px;
+    bottom: 60px;
+}
+
+.runner-running {
+    z-index: 2;
+    position: absolute;
+    width: 200px;
+    bottom: 0;
+    left: 70px;
+}
+
+#runner-collision.jump {
+    animation: runnerJumpCollision 800ms linear;
+}
+
+.runner-running.jump {
+    animation: runnerJump 800ms linear;
+}
+
+
+@keyframes runnerJump {
+    from {
+        bottom: 0;
+    }
+
+    20% {
+        bottom: 100px;
+    }
+
+    50% {
+        bottom: 250px;
+    }
+
+    60% {
+        bottom: 300px;
+    }
+
+    to {
+        bottom: 0px;
+    }
+}
+
+@keyframes runnerJumpCollision {
+    from {
+        bottom: 30px;
+    }
+
+    20% {
+        bottom: 130px;
+    }
+
+    50% {
+        bottom: 280px;
+    }
+
+    60% {
+        bottom: 250px;
+    }
+
+    to {
+        bottom: 0px;
+    }
+}
+
+
+.score {
+    font-family: 'Black Ops One', cursive;
+    font-size: 20px;
+    color: rgb(0, 0, 0);
+    position: absolute;
+    left: 25px;
+    top: 10px;
+    z-index: 3;
+}

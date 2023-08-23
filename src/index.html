@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./index.css">
+    <script src="./script/gameFunc.js" defer></script>
+    <title>Gari  Runner</title>
+</head>
+<body>
+    <main class="game-content">
+        <!-- Backgrounds -->
+        <div class="all-backgrounds">
+            <div class="background first">
+                <img class="sky" src="./public/5 - Sky_color.png">
+                <img class="cloud2" src="./public/4 - Cloud_cover_2.png">
+                <img class="ground" src="./public/1 - Foreground_scenery.png">
+            </div>
+            <div class="background second">
+                <img class="sky" src="./public/5 - Sky_color.png">
+                <img class="cloud2" src="./public/4 - Cloud_cover_2.png">
+                <img class="ground" src="./public/1 - Foreground_scenery.png">
+            </div>
+        </div>
+
+        <div class="ground-principal"></div>
+
+            <div id="runner-collision"></div>
+            <img class="runner-running" id="runner" src="./public/stopRunner.gif">
+            
+            <div id="trash-collision" class="one">
+                <img class="trash" id="trash" src="./public/trash1.png">
+            </div>
+
+            <div class="score">
+                <p id="score">Pontuação atual: <span>0</span></p>
+                <p id="higher-score">Maior pontuação: <span>0</span></p>
+            </div>
+    </main>
+</body>
+</html>
