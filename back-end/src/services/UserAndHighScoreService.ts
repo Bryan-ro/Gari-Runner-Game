@@ -15,7 +15,7 @@ export class UserAndHighScoreService {
 
             return { message: "Pontuação gravada com sucesso.", statusCode: 201 };
         } catch (error) {
-            if((error as Errors.prisma).code === "P1009") {
+            if((error as Errors.prisma).code === "P2002") {
                 return {message: "Esse nickname já está em uso, tente outro.", statusCode: 400 };
             } else {
                 return { message: "Erro interno no servidor, se perssistir entre contato com o Bryan.", statusCode: 500 };
