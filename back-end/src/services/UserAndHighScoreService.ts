@@ -20,10 +20,36 @@ export class UserAndHighScoreService {
             } else {
                 return { message: "Erro interno no servidor, se perssistir entre contato com o Bryan.", statusCode: 500 };
             }
-            
-           
         }
-        
+    }
+
+    public async updateScore (id: number, highScore?: number, playerName?: string) {
+        try {   
+            const currentHighScore = await this.getHighScoreForUpdate(id);
+            if(currentHighScore) {
+                await prisma.playerHighScore.update({
+                    where: {
+                        id: id
+                    },
+                    
+                    data: {
+                        highScore: Number(highScore) > currentHighScore.highScore? highScore: currentHighScore.highScore, 
+                        playerName: playerName ?? currentHighScore.playerName 
+                    }
+                });
+
+                return { message: "Pontuação atualizada com sucesso.", statusCode: 200 };
+            }
+
+            return { message: "O jogador não existe.", statusCode: 400 };
+            
+        } catch (error) {
+            return { message: "Erro interno do servidor.", statusCode: 500};
+        }
+    }
+    
+    private async getHighScoreForUpdate (id: number) {
+        return await prisma.playerHighScore.findUnique({ where: { id } });
     }
 }
 

@@ -12,7 +12,7 @@ export class Validations {
     }
 
     private async errors(errors: ValidationError[]) {
-        const constraints: unknown[] = [];
+        const constraints: string[][] = [];
       
         if (errors.length > 0) {
             errors.map(err => {
@@ -20,6 +20,6 @@ export class Validations {
             });
         }
 
-        return constraints;
+        return { errors: constraints, statusCode: 400 };
     }
 }
