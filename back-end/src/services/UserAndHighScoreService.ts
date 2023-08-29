@@ -4,22 +4,41 @@ import { PrismaClient } from "@prisma/client";
 const prisma = new PrismaClient();
 
 export class UserAndHighScoreService { 
+    public async getTopTenPlayers() {
+        try {
+            const highScores = await prisma.playerHighScore.findMany({
+                orderBy: {
+                    highScore: "desc"
+                },
+                take: 10,
+                select: {
+                    playerName: true,
+                    highScore: true,
+                    id: false
+                }
+            });
+    
+            return { ...highScores, statusCode: 200 };
+        } catch (error) {
+            return { message: "Erro interno do servidor.", statusCode: 500 };
+        }
+    }
+
+
     public async createUserAndHighScore(userValues: UserAndHighScore) {
         try {
-            await prisma.playerHighScore.create({
+            const data = await prisma.playerHighScore.create({
                 data: {
                     playerName: userValues.playerName,
                     highScore: userValues.highScore
                 }
             });
 
-            return { message: "Pontuação gravada com sucesso.", statusCode: 201 };
+            return { message: "Pontuação gravada com sucesso.", data: data, statusCode: 201 };
         } catch (error) {
-            if((error as Errors.prisma).code === "P2002") {
-                return {message: "Esse nickname já está em uso, tente outro.", statusCode: 400 };
-            } else {
-                return { message: "Erro interno no servidor, se perssistir entre contato com o Bryan.", statusCode: 500 };
-            }
+            if((error as Errors.prisma).code === "P2002") return {message: "Esse nickname já está em uso, tente outro.", statusCode: 400 };
+            
+            else return { message: "Erro interno no servidor, se perssistir entre contato com o Bryan.", statusCode: 500 };
         }
     }
 

@@ -10,10 +10,18 @@ const validations = new Validations();
 
 export class UserAndHighScoreController {
     public routes() {
+        router.get("/rank", this.getTopTenPlayers);
         router.post("/create", this.createUser);
         router.patch("/update", this.updateScore);
 
         return router;
+    }
+
+
+    private async getTopTenPlayers(req: Request, res: Response) {
+        const players = await service.getTopTenPlayers();
+
+        return res.status(players.statusCode).json({ ...players });
     }
 
 
@@ -29,6 +37,7 @@ export class UserAndHighScoreController {
 
         return res.status(creation.statusCode).json({ ...creation });
     }
+
 
     private async updateScore (req: Request, res: Response) {
         const newScore: UpdateScoreDto = req.body;
